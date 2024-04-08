@@ -5,27 +5,27 @@
 #include <QRect>
 #include <cmath>
 
-class Triangle {
+class Triangle
+{
+  private:
+    QPointF _orthocenter;
 
-private:
-  QPointF _orthocenter;
+    QPointF _A;
+    QPointF _B;
+    QPointF _C;
 
-  QPointF _A;
-  QPointF _B;
-  QPointF _C;
+    QPointF calculate_orthocenter();
 
-  QPointF calculate_orthocenter();
+  public:
+    Triangle(QPointF A, QPointF B, QPointF C);
 
-public:
-  Triangle(QPointF A, QPointF B, QPointF C);
+    bool isValid();
+    QPointF orthocenter();
+    QRectF BoundingRect();
 
-  bool isValid();
-  QPointF orthocenter();
-  QRectF BoundingRect();
-
-  QPointF A();
-  QPointF B();
-  QPointF C();
+    QPointF A();
+    QPointF B();
+    QPointF C();
 };
 
 #endif // TRIANGLE_H

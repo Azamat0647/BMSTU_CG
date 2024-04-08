@@ -20,7 +20,7 @@ $(UNIT_TEST_REPORT_NAME)-latest.txt:
 	echo "total code coverage: 0.00%" > $(UNIT_TEST_REPORT_NAME)-latest.txt
 	
 format:
-	find ./app/src -regex '.*\.\(cpp\|hpp\|cu\|cuh\|c\|h\)' -exec clang-format -style=llvm -i {} \;
+	find ./app/src -regex '.*\.\(cpp\|hpp\|cu\|cuh\|c\|h\)' -exec clang-format --style=Microsoft -i {} \;
 
 checkall:
 	lizard -Eduplicate
