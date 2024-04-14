@@ -4,6 +4,10 @@ project(lab_01 VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if (UNIX)
+    SET(CMAKE_INSTALL_RPATH lib)
+endif()
+
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
@@ -15,7 +19,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 
-if (code-cvrg)
+if (CODE_CVRG)
     list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake/modules)
 
     include(CodeCoverage)
@@ -23,8 +27,9 @@ if (code-cvrg)
 
 endif()
 
-#enable_testing()
-#
-#add_subdirectory(tests)
+
+enable_testing()
 
 add_subdirectory(app)
+
+add_subdirectory(unit_tests)

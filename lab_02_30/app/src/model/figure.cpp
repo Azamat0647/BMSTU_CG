@@ -1,20 +1,14 @@
 #include "figure.h"
 #include "ellipse.h"
-#include "rhombus.h"
 #include "rectangle.h"
+#include "rhombus.h"
 
-
-Figure::Figure(const QPointF &center, float width, float height) :
-    bodyRect(center, width - height, height),
-    rhombus(center, width - height, height),
-    centerCross(center, height/2, height/2),
-    centerCircle(center, height/4, height/4),
-    rightArc(QPoint(center.x() + width/2 - height/2, center.y()),
-            height/2, height/2, -M_PI_2, M_PI_2),
-    leftArc(QPoint(center.x() - width/2 + height/2, center.y()),
-            height/2, height/2, M_PI_2, 3*M_PI_2)
+Figure::Figure(const QPointF &center, float width, float height)
+    : bodyRect(center, width - height, height), rhombus(center, width - height, height),
+      centerCross(center, height / 2, height / 2), centerCircle(center, height / 4, height / 4),
+      rightArc(QPoint(center.x() + width / 2 - height / 2, center.y()), height / 2, height / 2, -M_PI_2, M_PI_2),
+      leftArc(QPoint(center.x() - width / 2 + height / 2, center.y()), height / 2, height / 2, M_PI_2, 3 * M_PI_2)
 {
-
 }
 
 void Figure::move(const QVector2D &move_vect)
@@ -47,15 +41,12 @@ void Figure::scale(const QPointF &center, const QVector2D &scale_vect)
     leftArc.scale(center, scale_vect);
 }
 
-void Figure::draw(QChart *chart)
+void Figure::draw(Drawer &drawer)
 {
-    QPen pen(QColor("blue"));
-    pen.setWidth(2);
-
-    bodyRect.draw(chart, pen);
-    rhombus.draw(chart, pen);
-    centerCircle.draw(chart, pen);
-    centerCross.draw(chart, pen);
-    rightArc.draw(chart, pen);
-    leftArc.draw(chart, pen);
+    bodyRect.draw(drawer);
+    rhombus.draw(drawer);
+    centerCircle.draw(drawer);
+    centerCross.draw(drawer);
+    rightArc.draw(drawer);
+    leftArc.draw(drawer);
 }

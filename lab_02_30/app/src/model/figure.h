@@ -1,16 +1,16 @@
 #ifndef FIGURE_H
 #define FIGURE_H
 
-#include <QPainter>
-#include "point2d.h"
-#include "ellipse.h"
-#include "rhombus.h"
 #include "cross.h"
+#include "ellipse.h"
+#include "point2d.h"
 #include "rectangle.h"
+#include "rhombus.h"
+#include <QPainter>
 
-class Figure
+class Figure : virtual public Shape
 {
-private:
+  private:
     Ellipse centerCircle;
     Cross centerCross;
     Rectangle bodyRect;
@@ -18,13 +18,13 @@ private:
     Ellipse leftArc;
     Ellipse rightArc;
 
-public:
+  public:
     Figure() = default;
     Figure(const QPointF &center, float width, float height);
-    void draw(QChart *chart);
-    void rotate(const QPointF &center, float angle);
-    void move(const QVector2D &move_vect);
-    void scale(const QPointF &center, const QVector2D &scale_vect);
+    void draw(Drawer &drawer) override;
+    void rotate(const QPointF &center, float angle) override;
+    void move(const QVector2D &move_vect) override;
+    void scale(const QPointF &center, const QVector2D &scale_vect) override;
 };
 
 #endif // FIGURE_H

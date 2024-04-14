@@ -1,23 +1,20 @@
 #include "rhombus.h"
 
-
-void Rhombus::draw(QChart *chart, const QPen &pen)
+Rhombus::Rhombus(const QPointF &center, float width, float height) : Shape(center)
 {
-    auto series = new QLineSeries();
+    basePoints.append(QPoint(center.x() + width / 2, center.y()));
+    basePoints.append(QPoint(center.x(), center.y() - height / 2));
+}
 
-    series->setPen(pen);
+void Rhombus::draw(Drawer &drawer)
+{
+    QList<Point2D> points(basePoints);
 
-    auto axisX = chart->axes(Qt::Horizontal).first();
-    auto axisY = chart->axes(Qt::Vertical).first();
+    const QPointF &a = basePoints[0];
+    const QPointF &b = basePoints[1];
 
-    series->append(_b);
-    series->append(_a);
-    series->append(_center - (_b - _center));
-    series->append(_center - (_a - _center));
-    series->append(_b);
+    points.append(_center - (a - _center));
+    points.append(_center - (b - _center));
 
-    chart->addSeries(series);
-
-    series->attachAxis(axisX);
-    series->attachAxis(axisY);
+    drawer.drawPolygon(points);
 }

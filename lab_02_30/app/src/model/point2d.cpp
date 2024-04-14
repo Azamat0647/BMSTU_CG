@@ -22,7 +22,6 @@ void Point2D::rotate(const QPointF &center, float angle)
 
     setX(center.x() + _x * qCos(rad) + _y * qSin(rad));
     setY(center.y() - _x * qSin(rad) + _y * qCos(rad));
-
 }
 
 void Point2D::scale(const QPointF &center, const QVector2D &scale_vect)

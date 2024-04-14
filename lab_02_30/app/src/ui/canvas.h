@@ -1,12 +1,12 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
-#include <QtCharts>
 #include "../model/figure.h"
+#include <QtCharts>
 
 class Canvas : public QChartView
 {
-public:
+  public:
     Canvas(QWidget *parent = nullptr);
     void moveFigure(const QVector2D &move_vect);
     void rotateFigure(const QPointF &center, float angle);
@@ -14,10 +14,11 @@ public:
 
     void resetFigure();
 
-private:
+  private:
     Figure figure;
     Figure initialFigure;
     QVector2D axesRangeMin, axesRangeMax;
+
     void updateAxesSize();
     void updateScreen();
     void resizeEvent(QResizeEvent *event) override;

@@ -1,13 +1,14 @@
 #ifndef RHOMBUS_H
 #define RHOMBUS_H
 
-#include "cross.h"
+#include "shape.h"
 
-class Rhombus : public Cross
+class Rhombus : virtual public Shape
 {
-public:
-    using Cross::Cross;
-    void draw(QChart *chart, const QPen &pen);
+  public:
+    Rhombus() = default;
+    Rhombus(const QPointF &center, float width, float height);
+    void draw(Drawer &drawer) override;
 };
 
 #endif // RHOMBUS_H

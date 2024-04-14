@@ -1,19 +1,17 @@
 #ifndef ELLIPSE_H
 #define ELLIPSE_H
 
-#include "cross.h"
+#include "shape.h"
 
-
-class Ellipse : public Cross
+class Ellipse : virtual public Shape
 {
-private:
+  private:
     float _startAngle, _endAngle;
-public:
-    Ellipse() = default;
-    Ellipse(const QPointF &center, float a, float b,
-            float startAngle=0, float endAngle=M_PI*2);
-    void draw(QChart *chart, const QPen &pen);
 
+  public:
+    Ellipse() = default;
+    Ellipse(const QPointF &center, float a, float b, float startAngle = 0, float endAngle = M_PI * 2);
+    void draw(Drawer &drawer) override;
 };
 
 #endif // ELLIPSE_H

@@ -1,11 +1,9 @@
 #include "canvas.h"
 
-Canvas::Canvas(QWidget *parent) :
-    QChartView(parent),
-    figure(QPoint(0, 0), 100, 34),
-    axesRangeMin(-100, -100),
-    axesRangeMax(100, 100)
+Canvas::Canvas(QWidget *parent)
+    : QChartView(parent), figure(QPoint(0, 0), 100, 34), axesRangeMin(-100, -100), axesRangeMax(100, 100)
 {
+    setbuf(stdout, NULL);
     initialFigure = figure;
 
     auto chart = new QChart;
@@ -21,12 +19,11 @@ Canvas::Canvas(QWidget *parent) :
 
     chart->legend()->hide();
 
-    figure.draw(chart);
-
     setChart(chart);
     setRenderHint(QPainter::Antialiasing);
-}
 
+    updateScreen();
+}
 
 void Canvas::moveFigure(const QVector2D &move_vector)
 {
@@ -46,12 +43,13 @@ void Canvas::scaleFigure(const QPointF &center, const QVector2D &scale_vector)
     updateScreen();
 }
 
-
 void Canvas::updateScreen()
 {
     chart()->removeAllSeries();
 
-    figure.draw(chart());
+    Drawer drawer(chart(), QColor("blue"), 2);
+
+    figure.draw(drawer);
 }
 
 void Canvas::resetFigure()
@@ -59,7 +57,6 @@ void Canvas::resetFigure()
     figure = initialFigure;
     updateScreen();
 }
-
 
 void Canvas::updateAxesSize()
 {
@@ -78,18 +75,20 @@ void Canvas::updateAxesSize()
     float max = std::max(maxX, maxY);
 
     float k = (float)height() / width();
-    minX = min; maxX = max;
-    minY = min; maxY = max;
+    minX = min;
+    maxX = max;
+    minY = min;
+    maxY = max;
 
     if (k < 1)
     {
-        maxX = max + (max - min)*(1/k - 1)/2;
-        minX = min - (max - min)*(1/k - 1)/2;
+        maxX = max + (max - min) * (1 / k - 1) / 2;
+        minX = min - (max - min) * (1 / k - 1) / 2;
     }
     else if (k > 1)
     {
-        maxY = max + (max - min)*(k - 1)/2;
-        minY = min - (max - min)*(k - 1)/2;
+        maxY = max + (max - min) * (k - 1) / 2;
+        minY = min - (max - min) * (k - 1) / 2;
     }
 
     axisX->setRange(minX, maxX);

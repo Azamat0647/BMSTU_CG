@@ -1,21 +1,14 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-#include "point2d.h"
-#include <QtCharts>
+#include "shape.h"
 
-
-class Rectangle
+class Rectangle : virtual public Shape
 {
-private:
-    Point2D _topLeft, _topRight, _bottomRight, _bottomLeft;
-public:
+  public:
     Rectangle() = default;
     Rectangle(const QPointF &center, float width, float height);
-    void draw(QChart *chart, const QPen &pen);
-    void rotate(const QPointF &center, float angle);
-    void move(const QVector2D &move_vect);
-    void scale(const QPointF &center, const QVector2D &scale_vect);
+    void draw(Drawer &drawer) override;
 };
 
 #endif // RECTANGLE_H

@@ -11,6 +11,11 @@ set(PROJECT_SOURCES
         ${SOURCE_DIR}/${UI_DIR}/mainwindow.h
         ${SOURCE_DIR}/${UI_DIR}/mainwindow.ui
         ${SOURCE_DIR}/${MODEL_DIR}/figure.h
+        ${SOURCE_DIR}/${MODEL_DIR}/shape.h
+        ${SOURCE_DIR}/${MODEL_DIR}/shape.cpp
+        ${SOURCE_DIR}/${MODEL_DIR}/object2d.h
+        ${SOURCE_DIR}/${MODEL_DIR}/drawer.h
+        ${SOURCE_DIR}/${MODEL_DIR}/drawer.cpp
         ${SOURCE_DIR}/${MODEL_DIR}/figure.cpp
         ${SOURCE_DIR}/${MODEL_DIR}/ellipse.h
         ${SOURCE_DIR}/${MODEL_DIR}/ellipse.cpp

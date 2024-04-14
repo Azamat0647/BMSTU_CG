@@ -17,6 +17,7 @@ class Triangle
     QPointF calculate_orthocenter();
 
   public:
+    Triangle() = default;
     Triangle(QPointF A, QPointF B, QPointF C);
 
     bool isValid();

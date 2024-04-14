@@ -2,10 +2,7 @@
 #include "../model/figure.h"
 #include <QMessageBox>
 
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 }
@@ -23,7 +20,6 @@ void MainWindow::on_aboutTaskAction_triggered()
     QMessageBox::about(this, title, text);
 }
 
-
 void MainWindow::on_moveButton_clicked()
 {
     float x = ui->moveX_spinBox->value();
@@ -33,7 +29,6 @@ void MainWindow::on_moveButton_clicked()
 
     ui->graphicsView->moveFigure(move_v);
 }
-
 
 void MainWindow::on_rotateButton_clicked()
 {
@@ -46,7 +41,6 @@ void MainWindow::on_rotateButton_clicked()
 
     ui->graphicsView->rotateFigure(center, angle);
 }
-
 
 void MainWindow::on_scaleButton_clicked()
 {
@@ -62,9 +56,7 @@ void MainWindow::on_scaleButton_clicked()
     ui->graphicsView->scaleFigure(center, scale_v);
 }
 
-
 void MainWindow::on_resetButton_clicked()
 {
     ui->graphicsView->resetFigure();
 }
-

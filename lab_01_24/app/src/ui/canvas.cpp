@@ -69,7 +69,6 @@ void Canvas::find_triangle()
         return;
     }
 
-    printf("\n(%f, %f)\n", max_triangle->orthocenter().x(), max_triangle->orthocenter().y());
     foundTriangle = max_triangle;
 
     show_triangle = true;
@@ -120,7 +119,9 @@ void Canvas::draw_triangle(QPainter &painter)
     painter.drawLine(B, C);
     painter.drawLine(C, A);
 
+    QPointF orth = foundTriangle->orthocenter();
     draw_point(foundTriangle->orthocenter(), QColor("blue"), painter);
+    printf("orthocenter: (%.4f, %.4f)\n", orth.x(), orth.y());
 }
 
 void Canvas::paintEvent(QPaintEvent *event)
