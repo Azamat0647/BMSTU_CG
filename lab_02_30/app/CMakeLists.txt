@@ -3,13 +3,7 @@ set(SOURCE_DIR src)
 set(UI_DIR ui)
 set(MODEL_DIR model)
 
-set(PROJECT_SOURCES
-        ${SOURCE_DIR}/main.cpp
-        ${SOURCE_DIR}/${UI_DIR}/mainwindow.cpp
-        ${SOURCE_DIR}/${UI_DIR}/canvas.h
-        ${SOURCE_DIR}/${UI_DIR}/canvas.cpp
-        ${SOURCE_DIR}/${UI_DIR}/mainwindow.h
-        ${SOURCE_DIR}/${UI_DIR}/mainwindow.ui
+set(APP_LIB_SOURCES
         ${SOURCE_DIR}/${MODEL_DIR}/figure.h
         ${SOURCE_DIR}/${MODEL_DIR}/shape.h
         ${SOURCE_DIR}/${MODEL_DIR}/shape.cpp
@@ -29,12 +23,21 @@ set(PROJECT_SOURCES
         ${SOURCE_DIR}/${MODEL_DIR}/point2d.cpp
 )
 
-include_directories(src/model, src/ui)
+set(APP_SOURCES
+        ${SOURCE_DIR}/main.cpp
+        ${SOURCE_DIR}/${UI_DIR}/mainwindow.cpp
+        ${SOURCE_DIR}/${UI_DIR}/mainwindow.h
+        ${SOURCE_DIR}/${UI_DIR}/mainwindow.ui
+        ${SOURCE_DIR}/${UI_DIR}/canvas.h
+        ${SOURCE_DIR}/${UI_DIR}/canvas.cpp
+)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_library(app_lib SHARED
+        ${APP_LIB_SOURCES}
+    )
     qt_add_executable(app
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+        ${APP_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET lab_01 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -43,16 +46,19 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 else()
     if(ANDROID)
         add_library(app SHARED
-            ${PROJECT_SOURCES}
+            ${APP_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(app ${PROJECT_SOURCES})
+        add_library(app_lib SHARED ${APP_LIB_SOURCES})
+        add_executable(app ${APP_SOURCES})
     endif()
 endif()
 
-target_link_libraries(app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts)
+target_link_libraries(app_lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Charts)
+target_include_directories(app_lib INTERFACE ${SOURCE_DIR}/${UI_DIR} ${SOURCE_DIR}/${MODEL_DIR})
+target_link_libraries(app PRIVATE app_lib Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts)
 
 
 set_target_properties(app PROPERTIES
@@ -67,4 +73,4 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(app)
 endif()
 
-install(TARGETS app DESTINATION . CONFIGURATIONS Release)
+install(TARGETS app app_lib RUNTIME DESTINATION . CONFIGURATIONS Release)
