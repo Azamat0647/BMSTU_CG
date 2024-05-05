@@ -9,11 +9,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     setbuf(stdout, NULL);
     ui->setupUi(this);
 
-    //    scene->setSceneRect(0, 0, 600, 600);
-    //    ui->graphicsView->setScene(scene);
-
-    //    scene->addPixmap(QPixmap::fromImage(*controller.image()));
-
     ui->graphicsView->setScene(scene);
 
     pixmap_item = scene->addPixmap(QPixmap::fromImage(*controller.image()));
@@ -28,17 +23,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
 
     model->setStringList(list);
-
-    //    ui->algsListView->setModel(model);
-    //    ui->algsListView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-    //    connect(ui->algsListView, &QListView::clicked, this,
-    //            &MainWindow::algorithm_selected);
-
-    //    connect(ui->blackRadioButton, &QRadioButton::clicked, this,
-    //            &MainWindow::color_selected);
-    //    connect(ui->backgroundRadioButton, &QRadioButton::clicked, this,
-    //            &MainWindow::color_selected);
 
     for (int i = 0; i <= STD; i++)
         ui->algorithmComboBox->addItem(alg_titles[i], i);
@@ -55,30 +39,13 @@ MainWindow::~MainWindow()
     delete scene;
 }
 
-void MainWindow::algorithm_selected()
-{
-    //    if (!ui->blackRadioButton->isChecked() &&
-    //        !ui->backgroundRadioButton->isChecked())
-    //        return;
-
-    ui->drawLineButton->setEnabled(true);
-    ui->drawSpectrumButton->setEnabled(true);
-}
-
-void MainWindow::color_selected()
-{
-    //    if (ui->algsListView->selectionModel()->selectedRows().isEmpty())
-    //        return;
-
-    ui->drawLineButton->setEnabled(true);
-    ui->drawSpectrumButton->setEnabled(true);
-}
 
 void MainWindow::on_aboutTaskAction_triggered()
 {
-    QString title = "Условие задачи, вариант 30";
-    QString text = "Нарисовать исходный рисунок, осуществить его"
-                   " перенос, масштабирование, поворот";
+    QString title = "О программе";
+    QString text = "Лабороторная работа №3 по дисциплине \"Компьютерная графика\""
+                   " на тему \"рисование отрезков с использованием различных алгоритмов\""
+                   "\n\nАвтор Костоев Азамат";
     QMessageBox::about(this, title, text);
 }
 
@@ -150,7 +117,7 @@ void MainWindow::on_timeCompButton_clicked()
     chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
     chart->setTitle("Сравнение времени работы алгоритмов<br>Длина отрезка: 200 Шаг поворота: 20");
 
-    auto set = new QBarSet("Время c отрисовкой");
+    auto set = new QBarSet("Время без отрисовки");
 
     auto series = new QBarSeries;
 

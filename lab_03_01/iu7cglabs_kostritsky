@@ -39,7 +39,7 @@ saveolds:
 	cp $(FUNC_TESTS_REPORT_NAME)-latest.txt $(FUNC_TESTS_REPORT_NAME)-old.txt
 
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -rf build*
 	rm -rf $(OUT_DIR)
 	rm -f *.txt.user
 	rm -f *-latest.txt

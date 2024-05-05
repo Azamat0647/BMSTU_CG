@@ -26,10 +26,6 @@ class MainWindow : public QMainWindow
 
     void on_drawLineButton_clicked();
 
-    void algorithm_selected();
-
-    void color_selected();
-
     void on_cleanScreenButton_clicked();
 
     void on_drawSpectrumButton_clicked();

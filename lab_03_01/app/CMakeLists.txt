@@ -6,8 +6,6 @@ set(MODEL_DIR model)
 set(PROJECT_SOURCES
         ${SOURCE_DIR}/main.cpp
         ${SOURCE_DIR}/${UI_DIR}/mainwindow.cpp
-        ${SOURCE_DIR}/${UI_DIR}/canvas.h
-        ${SOURCE_DIR}/${UI_DIR}/canvas.cpp
         ${SOURCE_DIR}/${UI_DIR}/mainwindow.h
         ${SOURCE_DIR}/${UI_DIR}/mainwindow.ui
         ${SOURCE_DIR}/${MODEL_DIR}/drawer.h
