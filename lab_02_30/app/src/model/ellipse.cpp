@@ -16,9 +16,6 @@ void Ellipse::draw(Drawer &drawer)
     Point2D a = basePoints[0];
     Point2D b = basePoints[1];
 
-    printf("a: (%.2f, %.2f)\n", a.x(), a.y());
-    printf("b: (%.2f, %.2f)\n", b.x(), b.y());
-
     QList<Point2D> points;
 
     for (int i = 0; i < n; i++)

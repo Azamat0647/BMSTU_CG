@@ -4,6 +4,8 @@ set(UI_DIR ui)
 set(MODEL_DIR model)
 
 set(APP_LIB_SOURCES
+        ${SOURCE_DIR}/${MODEL_DIR}/controller.h
+        ${SOURCE_DIR}/${MODEL_DIR}/controller.cpp
         ${SOURCE_DIR}/${MODEL_DIR}/figure.h
         ${SOURCE_DIR}/${MODEL_DIR}/shape.h
         ${SOURCE_DIR}/${MODEL_DIR}/shape.cpp

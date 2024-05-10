@@ -13,7 +13,6 @@ void Drawer::addSeriesToChart(QLineSeries *series)
 
 void Drawer::addPointsToSeries(const QList<Point2D> &points, QLineSeries *series)
 {
-    printf("addPointstoser size: %d\n", points.size());
     for (int i = 0; i < points.size(); i++)
     {
         series->append(points[i]);
@@ -30,8 +29,6 @@ void Drawer::drawLine(const QPointF &p1, const QPointF &p2)
     line->append(p2);
 
     addSeriesToChart(line);
-
-    printf("draw line\n");
 }
 
 void Drawer::drawPolygon(const QList<Point2D> &points)
@@ -44,7 +41,6 @@ void Drawer::drawPolygon(const QList<Point2D> &points)
     series->append(points.first());
 
     addSeriesToChart(series);
-    printf("draw polygon\n");
 }
 
 void Drawer::drawPolyline(const QList<Point2D> &points)
@@ -56,5 +52,4 @@ void Drawer::drawPolyline(const QList<Point2D> &points)
     addPointsToSeries(points, series);
 
     addSeriesToChart(series);
-    printf("draw polyline\n");
 }

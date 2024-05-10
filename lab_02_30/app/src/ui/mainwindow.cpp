@@ -5,6 +5,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    controller.setView(ui->graphicsView);
 }
 
 MainWindow::~MainWindow()
@@ -27,7 +28,7 @@ void MainWindow::on_moveButton_clicked()
 
     QVector2D move_v(x, y);
 
-    ui->graphicsView->moveFigure(move_v);
+    controller.moveFigure(move_v);
 }
 
 void MainWindow::on_rotateButton_clicked()
@@ -39,7 +40,7 @@ void MainWindow::on_rotateButton_clicked()
 
     QPointF center(cx, cy);
 
-    ui->graphicsView->rotateFigure(center, angle);
+    controller.rotateFigure(center, angle);
 }
 
 void MainWindow::on_scaleButton_clicked()
@@ -53,10 +54,10 @@ void MainWindow::on_scaleButton_clicked()
     QPointF center(cx, cy);
     QVector2D scale_v(kx, ky);
 
-    ui->graphicsView->scaleFigure(center, scale_v);
+    controller.scaleFigure(center, scale_v);
 }
 
 void MainWindow::on_resetButton_clicked()
 {
-    ui->graphicsView->resetFigure();
+    controller.resetFigure();
 }

@@ -4,6 +4,8 @@
 #include "./ui_mainwindow.h"
 #include <QMainWindow>
 
+#include "../model/controller.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -33,5 +35,6 @@ class MainWindow : public QMainWindow
 
   private:
     Ui::MainWindow *ui;
+    Controller controller;
 };
 #endif // MAINWINDOW_H
