@@ -157,7 +157,7 @@ void MainWindow::on_gradCompButton_clicked()
     QChart *chart = new QChart;
 
     chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
-    chart->setTitle("Сравнение времени работы алгоритмов<br>Длина отрезка: 200 Шаг поворота: 15");
+    chart->setTitle("Сравнение ступенчатости алгоритмов<br>Длина отрезка: 200 Шаг поворота: 15");
 
     spectrum_t spect = {.radius = 200, .step = 15};
 
