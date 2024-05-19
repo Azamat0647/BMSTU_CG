@@ -6,18 +6,16 @@ set(MODEL_DIR model)
 set(PROJECT_SOURCES
         ${SOURCE_DIR}/main.cpp
         ${SOURCE_DIR}/${UI_DIR}/mainwindow.cpp
+        ${SOURCE_DIR}/${UI_DIR}/canvas.h
+        ${SOURCE_DIR}/${UI_DIR}/canvas.cpp
         ${SOURCE_DIR}/${UI_DIR}/mainwindow.h
         ${SOURCE_DIR}/${UI_DIR}/mainwindow.ui
         ${SOURCE_DIR}/${MODEL_DIR}/drawer.h
         ${SOURCE_DIR}/${MODEL_DIR}/drawer.cpp
         ${SOURCE_DIR}/${MODEL_DIR}/controller.h
         ${SOURCE_DIR}/${MODEL_DIR}/controller.cpp
-        ${SOURCE_DIR}/${MODEL_DIR}/drawellipsealgs.h
-        ${SOURCE_DIR}/${MODEL_DIR}/drawcirclealgs.h
-        ${SOURCE_DIR}/${MODEL_DIR}/algorithms/bresenham.cpp
-        ${SOURCE_DIR}/${MODEL_DIR}/algorithms/canonical.cpp
-        ${SOURCE_DIR}/${MODEL_DIR}/algorithms/parametric.cpp
-        ${SOURCE_DIR}/${MODEL_DIR}/algorithms/midpoint.cpp
+        ${SOURCE_DIR}/${MODEL_DIR}/polygon.h 
+        ${SOURCE_DIR}/${MODEL_DIR}/polygon.cpp
 )
 
 include_directories(${SOURCE_DIR}/${MODEL_DIR}, ${SOURCE_DIR}/${UI_DIR})
