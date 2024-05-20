@@ -1,0 +1,49 @@
+[
+    {
+        "name":"test1",
+        "desc":"отрисовка двух линий p1(100, 50) - p2(450, 200) и p1(200, 450) - p2(50, 100) алгоритмом ЦДА",
+        "algorithm":"ЦДА",
+        "commands":[
+            {
+                "command":"draw-line",
+                "input":{
+                    "beginPoint":{
+                        "x":100,
+                        "y":50
+                    },
+                    "endPoint":{
+                        "x":450,
+                        "y":200
+                    }
+                }
+            },
+            {
+                "command":"draw-line",
+                "input":{
+                    "beginPoint":{
+                        "x":200,
+                        "y":450
+                    },
+                    "endPoint":{
+                        "x":50,
+                        "y":100
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name":"test2",
+        "desc":"отрисовка спектра с радиусом 200 и шагом 20 алгоритмом Ву",
+        "algorithm":"Ву",
+        "commands":[
+            {
+                "command":"draw-spectrum",
+                "input":{
+                    "radius":200,
+                    "step":20
+                }
+            }
+        ]
+    }
+]
