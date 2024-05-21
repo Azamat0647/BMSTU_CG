@@ -17,9 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->closePolygonButton->setEnabled(false);
 
-    ui->addPointInputX_SB->setMaximum(controller.image()->width());
-    ui->addPointInputY_SB->setMaximum(controller.image()->height());
-
     scene = new Canvas(controller);
 
     auto img = controller.image();
