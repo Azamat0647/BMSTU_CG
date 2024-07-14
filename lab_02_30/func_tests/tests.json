@@ -1,0 +1,74 @@
+[
+    {
+        "name":"test1",
+        "desc":"Перемещение на 50 по x и на 30 по y",
+        "commands":[
+            {
+                "command":"move",
+                "input":{
+                    "moveX":50,
+                    "moveY":30
+                }
+            }
+        ]
+    },
+    {
+        "name":"test2",
+        "desc":"Масштабирование по y в два раза",
+        "commands":[
+            {
+                "command":"scale",
+                "input":{
+                    "centerX":0,
+                    "centerY":0,
+                    "kx":1.0,
+                    "ky":2.0
+                }
+            }
+        ]
+    },
+    {
+        "name":"test3",
+        "desc":"Поворот c центром (50, 0) на 70 гр.",
+        "commands":[
+            {
+                "command":"rotate",
+                "input":{
+                    "centerX":50,
+                    "centerY":0,
+                    "angle":70
+                }
+            }
+        ]
+    },
+    {
+        "name":"test4",
+        "desc":"Поворот с центром (0, 0) 3 раза по 120 гр.",
+        "commands":[
+            {
+                "command":"rotate",
+                "input":{
+                    "centerX":0,
+                    "centerY":0,
+                    "angle":120
+                }
+            },
+            {
+                "command":"rotate",
+                "input":{
+                    "centerX":0,
+                    "centerY":0,
+                    "angle":120
+                }
+            },
+            {
+                "command":"rotate",
+                "input":{
+                    "centerX":0,
+                    "centerY":0,
+                    "angle":120
+                }
+            }
+        ]
+    }
+]

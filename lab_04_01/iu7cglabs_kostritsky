@@ -1,0 +1,45 @@
+BUILD_DIR := ./build
+OUT_DIR := ./out
+APP_NAME := app
+GENERATOR_NAME := "Unix Makefiles"
+CMAKE_RELEASE_FLAGS := -DCMAKE_BUILD_TYPE=Release -DCODE_CVRG=OFF
+CMAKE_TEST_FLAGS := -DCMAKE_BUILD_TYPE=Debug -DCODE_CVRG=ON
+UNIT_TESTS_REPORT_NAME := report-unittesting
+FUNC_TESTS_REPORT_NAME := report-functesting
+
+build_release:
+	cmake $(CMAKE_RELEASE_FLAGS) -S . -B $(BUILD_DIR) -G $(GENERATOR_NAME)
+	cmake --build $(BUILD_DIR)
+
+release: build_release
+	cmake --install $(BUILD_DIR) --prefix $(OUT_DIR) --config Release
+
+run: release
+	$(OUT_DIR)/$(APP_NAME)
+
+# run_unittests:
+# 	cmake $(CMAKE_TEST_FLAGS) -S . -B $(BUILD_DIR) -G $(GENERATOR_NAME)
+# 	cmake --build $(BUILD_DIR) --target unit_tests
+# 	ctest --test-dir $(BUILD_DIR)
+
+$(UNIT_TESTS_REPORT_NAME)-latest.txt:
+	echo "total code coverage: 0.00%" > $(UNIT_TESTS_REPORT_NAME)-latest.txt
+
+$(FUNC_TESTS_REPORT_NAME)-latest.txt:
+	echo "total code coverage: 0.00%" > $(FUNC_TESTS_REPORT_NAME)-latest.txt
+	
+format:
+	find ./app/src -regex '.*\.\(cpp\|hpp\|cu\|cuh\|c\|h\)' -exec clang-format --style="{BasedOnStyle: Microsoft, IndentWidth: 4}" -i {} \;
+
+checkall:
+	lizard -Eduplicate
+
+saveolds:
+	cp $(UNIT_TESTS_REPORT_NAME)-latest.txt $(UNIT_TESTS_REPORT_NAME)-old.txt
+	cp $(FUNC_TESTS_REPORT_NAME)-latest.txt $(FUNC_TESTS_REPORT_NAME)-old.txt
+
+clean:
+	rm -rf $(BUILD_DIR)
+	rm -rf $(OUT_DIR)
+	rm -f *.txt.user
+	rm -f *-latest.txt
